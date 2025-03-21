@@ -2,7 +2,7 @@ package paquete1;
 
 import java.util.Iterator;
 
-public class MySimpleLinkedList<T> implements Iterable<T>{
+public class MySimpleLinkedList<T extends Comparable<T>> implements Iterable<T>{
 	
 	private Node<T> first;
 	private int size;
@@ -18,6 +18,25 @@ public class MySimpleLinkedList<T> implements Iterable<T>{
 		this.first = tmp;
 		this.size = this.size + 1;
 	}
+	
+	public void insertInOrder(T info) {
+        Node<T> newNode = new Node<>(info, null);
+
+        // Caso 1: La lista está vacía o el nuevo elemento es menor que el primero
+        if (this.isEmpty() || info.compareTo(this.first.getInfo()) < 0) {
+            newNode.setNext(this.first);
+            this.first = newNode;
+        } else {
+            // Caso 2: Buscar la posición correcta para insertar
+            Node<T> current = this.first;
+            while (current.getNext() != null && info.compareTo(current.getNext().getInfo()) >= 0) {
+                current = current.getNext();
+            }
+            newNode.setNext(current.getNext());
+            current.setNext(newNode);
+        }
+        this.size++; // Incrementar el tamaño de la lista
+    }
 	
 	public T extractFront() {		
 		if(this.isEmpty()) {
@@ -78,6 +97,9 @@ public class MySimpleLinkedList<T> implements Iterable<T>{
 	public Iterator<T> iterator() {
 		return new IteradorLista(this.first);
 	}
+
+
+	
 	
 }
 
