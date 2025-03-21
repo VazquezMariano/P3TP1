@@ -31,7 +31,7 @@ public class Main {
 		 */
 		 //sigue iterando la verdad, no hay mejora en terminos de complejidad medio que es o(n) xd
 		 
-		
+		/*
 		 MySimpleLinkedList<Integer> listaOrdenada = new MySimpleLinkedList<>();
 		 
 		 for(int val : lista) {
@@ -44,6 +44,24 @@ public class Main {
 
 		 
 		 System.out.println(listaOrdenada);
+		 */
+		 MySimpleLinkedList<Integer> listaRepetidos = new MySimpleLinkedList<>();
+		 
+		 for(int val : lista) {
+			 for(int val1 : lista1) {
+				 if(val == val1) {
+					 listaRepetidos.insertFront(val);
+				 }
+			 }
+		 }
+		 System.out.println(listaRepetidos);
+		 MySimpleLinkedList<Integer> listaFinal = new MySimpleLinkedList<>();
+		 for(int val : lista) {
+			 if(!(listaRepetidos.contains(val))) {
+				 listaFinal.insertFront(val);
+			 }
+		 }
+		 System.out.println(listaFinal);
 		 
 		 
 		 

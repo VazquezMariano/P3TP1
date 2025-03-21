@@ -97,6 +97,14 @@ public class MySimpleLinkedList<T extends Comparable<T>> implements Iterable<T>{
 	public Iterator<T> iterator() {
 		return new IteradorLista(this.first);
 	}
+	
+	public boolean contains(T dato) {
+		int i = 0;
+		while(i < this.size() && this.get(i) != dato) {
+			i = i + 1;
+		}
+		return i < this.size();
+	}
 
 
 	
